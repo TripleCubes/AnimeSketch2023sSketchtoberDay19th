@@ -1,4 +1,7 @@
-extends Node
+extends Node2D
+
+func mouse_pos() -> Vector2:
+	return get_global_mouse_position()
 
 func rnd_pos_x() -> Vector2:
 	return Vector2(randf_range(0, Consts.WINDOW_WH.x), Consts.WINDOW_H)

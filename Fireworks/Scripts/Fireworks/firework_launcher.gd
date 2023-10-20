@@ -2,10 +2,6 @@ extends Node2D
 
 var list: = []
 
-func _ready():
-	for i in 20:
-		Firework_0.create_and_add(0)
-
 func _draw():
 	for firework in list:
 		firework.draw_func.call(firework)
