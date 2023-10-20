@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://wcw48a7wirak"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_2r0h1"]
+[ext_resource type="Script" path="res://Scripts/Fireworks/firework_launcher.gd" id="2_la56c"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_2r0h1")
+
+[node name="Bkg" type="ColorRect" parent="."]
+offset_right = 600.0
+offset_bottom = 600.0
+color = Color(0.0980392, 0.0980392, 0.156863, 1)
+
+[node name="FireworkLauncher" type="Node2D" parent="."]
+script = ExtResource("2_la56c")

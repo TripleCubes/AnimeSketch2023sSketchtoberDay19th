@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://chhwwfbwydlja"]
+
+[ext_resource type="Shader" path="res://Shaders/vertical_blur.gdshader" id="1_3oh7o"]
+[ext_resource type="PackedScene" uid="uid://dgisd2porp2yg" path="res://Scenes/Blur/horizontal_blurred.tscn" id="2_a1xn4"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_uggjo"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tivl1"]
+shader = ExtResource("1_3oh7o")
+shader_parameter/BLUR_RANGE = null
+shader_parameter/INTENSITY_MUL = null
+shader_parameter/WINDOW_H = null
+
+[node name="VerticalBlurred" type="Node2D"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(600, 600)
+
+[node name="HorizontalBlurred" parent="SubViewport" instance=ExtResource("2_a1xn4")]
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport"]
+anchor_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("ViewportTexture_uggjo")
+centered = false
+
+[node name="VerticalBlur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_tivl1")
+offset_right = 600.0
+offset_bottom = 600.0
