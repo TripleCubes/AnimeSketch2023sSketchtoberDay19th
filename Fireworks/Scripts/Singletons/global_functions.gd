@@ -40,6 +40,7 @@ func rnd_dir_bias_up() -> Vector2:
 
 
 var _bkg_glow_modulate: float = 1
+
 func bkg_glow(intensity: float) -> void:
 	_bkg_glow_modulate = intensity
 

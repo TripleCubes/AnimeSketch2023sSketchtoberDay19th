@@ -2,11 +2,16 @@ class_name BaseFirework
 extends Node
 
 static func create(init_pos: Vector2, init_dir: Vector2, init_speed: float, init_color: Color, 
-					depth: int, exist_for_msec, draw_func: Callable, update_func: Callable) -> Dictionary:
+					depth: int, exist_for_msec: float, pop_h: float, gravity: float, radius: float,
+					draw_func: Callable, update_func: Callable) -> Dictionary:
 	return {
 		created_at_msec = Time.get_ticks_msec(),
 		exist_for_msec = exist_for_msec,
+		pop_h = pop_h,
 		depth = depth,
+		gravity = gravity,
+		radius = radius,
+
 		draw_func = draw_func,
 		update_func = update_func,
 
