@@ -28,6 +28,9 @@ static func create_and_add(depth: int, in_pos_dir: = Vector2(0, 0), exist_for_ms
 	GV.firework_launcher.list.append(firework)
 
 static func _firework_draw(firework: Dictionary) -> void:
+	if GF.out_of_window(firework.pos):
+		return
+		
 	if firework.depth == 0 and firework.pos.y < firework.pop_h:
 		return
 
@@ -76,7 +79,7 @@ static func _firework_update(_delta: float, firework: Dictionary) -> void:
 		firework.trail_created += 1
 
 static func _pop_firework(firework: Dictionary) -> void:
-	GF.wait(0.5, func():
+	GF.wait(0.4, func():
 		for i in randf_range(14, 20):
 			create_and_add(firework.depth + 1, firework.pos, randf_range(1000, 1500))
 

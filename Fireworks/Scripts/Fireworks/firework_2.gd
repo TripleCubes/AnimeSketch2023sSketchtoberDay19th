@@ -28,6 +28,9 @@ static func create_and_add(depth: int, in_pos_dir: = Vector2(0, 0), exist_for_ms
 	GV.firework_launcher.list.append(firework)
 
 static func _firework_draw(firework: Dictionary) -> void:
+	if GF.out_of_window(firework.pos):
+		return
+		
 	if firework.depth == 0 and firework.pos.y < firework.pop_h:
 		return
 

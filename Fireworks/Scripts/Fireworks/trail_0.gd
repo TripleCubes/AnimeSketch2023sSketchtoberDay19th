@@ -13,5 +13,5 @@ static func _trail_draw(trail: Dictionary) -> void:
 	GV.firework_launcher.draw_circle(trail.pos, trail.radius,
 									Color(trail.color.r, trail.color.g, trail.color.b, opacity))
 
-static func _trail_update(_delta: float, trail: Dictionary) -> void:
+static func _trail_update(_delta: float, _trail: Dictionary) -> void:
 	pass
