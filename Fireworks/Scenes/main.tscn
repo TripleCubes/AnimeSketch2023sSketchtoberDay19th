@@ -1,15 +1,85 @@
-[gd_scene load_steps=3 format=3 uid="uid://wcw48a7wirak"]
+[gd_scene load_steps=13 format=3 uid="uid://wcw48a7wirak"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_2r0h1"]
 [ext_resource type="Script" path="res://Scripts/Fireworks/firework_launcher.gd" id="2_la56c"]
+[ext_resource type="Shader" path="res://Shaders/horizontal_blur.gdshader" id="3_mt32h"]
+[ext_resource type="Shader" path="res://Shaders/vertical_blur.gdshader" id="4_h6am2"]
+[ext_resource type="Shader" path="res://Shaders/add.gdshader" id="5_hntl1"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b1a5d"]
+viewport_path = NodePath("FireworkLauncher")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r5viv"]
+resource_local_to_scene = true
+shader = ExtResource("3_mt32h")
+shader_parameter/BLUR_RANGE = null
+shader_parameter/INTENSITY_MUL = null
+shader_parameter/WINDOW_W = null
+shader_parameter/unblurred_texture = SubResource("ViewportTexture_b1a5d")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wpsyx"]
+viewport_path = NodePath("HorizontalBlurred")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dysrb"]
+resource_local_to_scene = true
+shader = ExtResource("4_h6am2")
+shader_parameter/BLUR_RANGE = null
+shader_parameter/INTENSITY_MUL = null
+shader_parameter/WINDOW_H = null
+shader_parameter/horizontal_blurred_texture = SubResource("ViewportTexture_wpsyx")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_n33ke"]
+viewport_path = NodePath("FireworkLauncher")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_tftqy"]
+viewport_path = NodePath("VerticalBlurred")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fueno"]
+resource_local_to_scene = true
+shader = ExtResource("5_hntl1")
+shader_parameter/vertical_blurred_texture = SubResource("ViewportTexture_tftqy")
+shader_parameter/unblurred_texture = SubResource("ViewportTexture_n33ke")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2r0h1")
 
-[node name="Bkg" type="ColorRect" parent="."]
+[node name="FireworkLauncher" type="SubViewport" parent="."]
+size = Vector2i(600, 600)
+
+[node name="Bkg" type="ColorRect" parent="FireworkLauncher"]
 offset_right = 600.0
 offset_bottom = 600.0
 color = Color(0.0980392, 0.0980392, 0.156863, 1)
 
-[node name="FireworkLauncher" type="Node2D" parent="."]
+[node name="FireworkLauncher" type="Node2D" parent="FireworkLauncher"]
 script = ExtResource("2_la56c")
+
+[node name="Camera2D" type="Camera2D" parent="FireworkLauncher"]
+anchor_mode = 0
+
+[node name="HorizontalBlurred" type="SubViewport" parent="."]
+size = Vector2i(600, 600)
+
+[node name="HorizontalBlur" type="ColorRect" parent="HorizontalBlurred"]
+material = SubResource("ShaderMaterial_r5viv")
+offset_right = 600.0
+offset_bottom = 600.0
+
+[node name="Camera2D" type="Camera2D" parent="HorizontalBlurred"]
+anchor_mode = 0
+
+[node name="VerticalBlurred" type="SubViewport" parent="."]
+size = Vector2i(600, 600)
+
+[node name="VerticalBlur" type="ColorRect" parent="VerticalBlurred"]
+material = SubResource("ShaderMaterial_dysrb")
+offset_right = 600.0
+offset_bottom = 600.0
+
+[node name="Camera2D" type="Camera2D" parent="VerticalBlurred"]
+anchor_mode = 0
+
+[node name="Add" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_fueno")
+offset_right = 600.0
+offset_bottom = 600.0

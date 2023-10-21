@@ -44,7 +44,7 @@ static func _firework_update(_delta: float, firework: Dictionary) -> void:
 	if firework.depth == 0:
 		var angle: float = firework.pos.angle_to_point(firework.pos + firework.dir) + PI/2
 		var time: = float(Time.get_ticks_msec()) / 100
-		var wave: float = sin(time) * sin(time/2 + 0.5) * cos(time/3 + time) * 3
+		var wave: float = sin(time) * sin(time/2 + 0.5) * cos(time/3 + time) * 1.25
 		firework.actual_pos = firework.pos + Vector2(wave, 0).rotated(angle)
 	else:
 		firework.actual_pos = firework.pos

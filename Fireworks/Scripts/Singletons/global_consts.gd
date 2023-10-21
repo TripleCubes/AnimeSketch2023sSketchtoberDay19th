@@ -4,6 +4,5 @@ extends Node
 @onready var WINDOW_W: float = WINDOW_WH.x
 @onready var WINDOW_H: float = WINDOW_WH.y
 
-const GLOW_ENABLED: = true
 const INTENSITY_MUL: float = 1
 const BLUR_RANGE: float = 10

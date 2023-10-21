@@ -15,7 +15,7 @@ static func create_and_add(depth: int, in_pos_dir: = Vector2(0, 0), exist_for_ms
 		dir = GF.rnd_dir_bias_up()
 
 	var firework: = BaseFirework.create(pos, dir, randf_range(200, 350), Color(1, 1, 1),
-										depth, exist_for_msec, randf_range(150, 350), randf_range(0.1, 0.5), 2,
+										depth, exist_for_msec, randf_range(150, 350), randf_range(0.1, 0.5), 1.5,
 										5,
 										Firework_0._firework_draw, Firework_0._firework_update)
 
@@ -37,7 +37,7 @@ static func _firework_update(_delta: float, firework: Dictionary) -> void:
 	if firework.depth == 0:
 		var angle: float = firework.pos.angle_to_point(firework.pos + firework.dir) + PI/2
 		var time: = float(Time.get_ticks_msec()) / 100
-		var wave: float = sin(time) * sin(time/2 + 0.5) * cos(time/3 + time) * 3
+		var wave: float = sin(time) * sin(time/2 + 0.5) * cos(time/3 + time) * 1.25
 		firework.actual_pos = firework.pos + Vector2(wave, 0).rotated(angle)
 	else:
 		firework.actual_pos = firework.pos
