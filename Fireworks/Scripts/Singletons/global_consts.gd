@@ -6,3 +6,6 @@ extends Node
 
 const INTENSITY_MUL: float = 1
 const BLUR_RANGE: float = 10
+
+const MAX_FIREWORK_H: float = 100
+const MIN_FIREWORK_H: float = 300

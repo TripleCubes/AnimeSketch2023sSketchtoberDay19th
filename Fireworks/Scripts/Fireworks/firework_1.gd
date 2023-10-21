@@ -18,7 +18,8 @@ static func create_and_add(depth: int, in_pos_dir: = Vector2(0, 0), exist_for_ms
 		pos = in_pos_dir + dir * randf_range(10, 80)
 
 	var firework: = BaseFirework.create(pos, dir, speed, Color("FFEBA3"),
-										depth, exist_for_msec, randf_range(150, 350), randf_range(0.01, 0.05), 1,
+										depth, exist_for_msec, randf_range(Consts.MAX_FIREWORK_H, Consts.MIN_FIREWORK_H), 
+										randf_range(0.01, 0.05), 1,
 										5,
 										Firework_1._firework_draw, Firework_1._firework_update)
 
@@ -35,8 +36,13 @@ static func _firework_draw(firework: Dictionary) -> void:
 									Color(firework.color.r, firework.color.g, firework.color.b, opacity))
 
 static func _firework_update(_delta: float, firework: Dictionary) -> void:
+	var speed_mul: float = 1
+
+	if firework.depth == 0:
+		speed_mul = ((firework.pos.y - firework.pop_h) / 300) * 2 + 0.1
+
 	if firework.depth != 0 or firework.pos.y > firework.pop_h:
-		firework.pos += firework.dir * _delta * firework.speed
+		firework.pos += firework.dir * _delta * firework.speed * speed_mul
 
 	if firework.depth >= 1:
 		firework.pos += Vector2(0, firework.gravity * (float(Time.get_ticks_msec()) - firework.created_at_msec)) * _delta
@@ -44,7 +50,7 @@ static func _firework_update(_delta: float, firework: Dictionary) -> void:
 	if firework.depth == 0:
 		var angle: float = firework.pos.angle_to_point(firework.pos + firework.dir) + PI/2
 		var time: = float(Time.get_ticks_msec()) / 100
-		var wave: float = sin(time) * sin(time/2 + 0.5) * cos(time/3 + time) * 1.25
+		var wave: float = sin(time) * sin(time/2 + 0.5) * cos(time/3 + time) * 1.25 * speed_mul
 		firework.actual_pos = firework.pos + Vector2(wave, 0).rotated(angle)
 	else:
 		firework.actual_pos = firework.pos
@@ -70,7 +76,7 @@ static func _firework_update(_delta: float, firework: Dictionary) -> void:
 		firework.trail_created += 1
 
 static func _pop_firework(firework: Dictionary) -> void:
-	GF.wait(0.6, func():
+	GF.wait(0.5, func():
 		for i in randf_range(14, 20):
 			create_and_add(firework.depth + 1, firework.pos, randf_range(1000, 1500))
 

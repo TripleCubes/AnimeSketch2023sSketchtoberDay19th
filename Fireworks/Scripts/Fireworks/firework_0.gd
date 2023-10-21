@@ -15,7 +15,8 @@ static func create_and_add(depth: int, in_pos_dir: = Vector2(0, 0), exist_for_ms
 		dir = GF.rnd_dir_bias_up()
 
 	var firework: = BaseFirework.create(pos, dir, randf_range(200, 350), Color(1, 1, 1),
-										depth, exist_for_msec, randf_range(150, 350), randf_range(0.1, 0.5), 1.5,
+										depth, exist_for_msec, randf_range(Consts.MAX_FIREWORK_H, Consts.MIN_FIREWORK_H), 
+										randf_range(0.1, 0.5), 1.5,
 										5,
 										Firework_0._firework_draw, Firework_0._firework_update)
 
@@ -29,7 +30,12 @@ static func _firework_draw(firework: Dictionary) -> void:
 									Color(firework.color.r, firework.color.g, firework.color.b, opacity))
 
 static func _firework_update(_delta: float, firework: Dictionary) -> void:
-	firework.pos += firework.dir * _delta * firework.speed
+	var speed_mul: float = 1
+
+	if firework.depth == 0:
+		speed_mul = ((firework.pos.y - firework.pop_h) / 300) * 2 + 0.1
+
+	firework.pos += firework.dir * _delta * firework.speed * speed_mul
 
 	if firework.depth >= 1:
 		firework.pos += Vector2(0, firework.gravity * (float(Time.get_ticks_msec()) - firework.created_at_msec)) * _delta
@@ -37,7 +43,7 @@ static func _firework_update(_delta: float, firework: Dictionary) -> void:
 	if firework.depth == 0:
 		var angle: float = firework.pos.angle_to_point(firework.pos + firework.dir) + PI/2
 		var time: = float(Time.get_ticks_msec()) / 100
-		var wave: float = sin(time) * sin(time/2 + 0.5) * cos(time/3 + time) * 1.25
+		var wave: float = sin(time) * sin(time/2 + 0.5) * cos(time/3 + time) * 1.25 * speed_mul
 		firework.actual_pos = firework.pos + Vector2(wave, 0).rotated(angle)
 	else:
 		firework.actual_pos = firework.pos
