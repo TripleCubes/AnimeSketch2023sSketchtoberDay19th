@@ -1,5 +1,18 @@
 extends Node2D
 
+func wait(time: float, callable: Callable) -> void:
+	var timer: = get_tree().create_timer(time)
+	timer.timeout.connect(callable)
+
+func tween(obj, property: NodePath, value: Variant, time: float, sine: bool) -> void:
+	var tween_var: = get_tree().create_tween()
+	if sine:
+		tween_var.tween_property(obj, property, value, time).set_trans(Tween.TRANS_SINE)
+	else:
+		tween_var.tween_property(obj, property, value, time)
+
+
+
 func mouse_pos() -> Vector2:
 	return get_global_mouse_position()
 
@@ -23,3 +36,18 @@ func rnd_dir_bias_up() -> Vector2:
 		return Vector2(0, -1).rotated(randf_range(-PI/2, PI/2))
 
 	return Vector2(0, 1).rotated(randf_range(-PI/2, PI/2))
+
+
+
+var _bkg_glow_modulate: float = 1
+func bkg_glow(intensity: float) -> void:
+	_bkg_glow_modulate = intensity
+
+func _bkg_glow_process(_delta: float):
+	_bkg_glow_modulate -= _delta
+	if _bkg_glow_modulate < 1:
+		_bkg_glow_modulate = 1
+	GV.bkg.modulate = Color(_bkg_glow_modulate, _bkg_glow_modulate, _bkg_glow_modulate, 1)
+
+func _process(_delta):
+	_bkg_glow_process(_delta)

@@ -53,4 +53,5 @@ static func _pop_firework(firework: Dictionary) -> void:
 	for i in randf_range(7, 10):
 		create_and_add(firework.depth + 1, firework.pos, randf_range(500, 800))
 
+	GF.bkg_glow(1.3)
 	firework.remove_next_frame = true

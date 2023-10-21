@@ -6,3 +6,4 @@ extends Node
 @onready var add_color_rect: = get_node("/root/View/Add")
 
 @onready var unblurred_subviewport: SubViewport = get_node("/root/View/SubViewport/VerticalBlurred/SubViewport/HorizontalBlurred/SubViewport/")
+@onready var bkg: ColorRect = get_node("/root/View/SubViewport/VerticalBlurred/SubViewport/HorizontalBlurred/SubViewport/Main/Bkg")
