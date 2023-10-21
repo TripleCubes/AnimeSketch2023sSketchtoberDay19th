@@ -15,3 +15,11 @@ func rnd_dir() -> Vector2:
 const RND_DIR_UP_ROTATION_RANGE: float = deg_to_rad(30)
 func rnd_dir_up() -> Vector2:
 	return Vector2(0, -1).rotated(randf_range(-RND_DIR_UP_ROTATION_RANGE, RND_DIR_UP_ROTATION_RANGE))
+
+func rnd_dir_bias_up() -> Vector2:
+	var dice: = randf_range(0, 10)
+	
+	if dice > 2:
+		return Vector2(0, -1).rotated(randf_range(-PI/2, PI/2))
+
+	return Vector2(0, 1).rotated(randf_range(-PI/2, PI/2))
