@@ -1,4 +1,4 @@
-class_name Firework_1
+class_name Firework_2
 extends Node2D
 
 static func create_and_add(depth: int, in_pos_dir: = Vector2(0, 0), exist_for_msec: float = 10000) -> void:
@@ -13,13 +13,13 @@ static func create_and_add(depth: int, in_pos_dir: = Vector2(0, 0), exist_for_ms
 		else:
 			dir = (in_pos_dir - pos).normalized()
 	else:		
-		speed = randf_range(50, 80)
+		speed = randf_range(80, 120)
 		dir = GF.rnd_dir_bias_up()
-		pos = in_pos_dir + dir * randf_range(10, 80)
+		pos = in_pos_dir + dir * randf_range(5, 30)
 
-	var firework: = BaseFirework.create(pos, dir, speed, Color("FFEBA3"),
-										depth, exist_for_msec, randf_range(150, 350), randf_range(0.01, 0.05), 1,
-										Firework_1._firework_draw, Firework_1._firework_update)
+	var firework: = BaseFirework.create(pos, dir, speed, Color("B2FFF2"),
+										depth, exist_for_msec, randf_range(150, 350), randf_range(0.01, 0.06), 1,
+										Firework_2._firework_draw, Firework_2._firework_update)
 
 	firework.actual_pos = pos
 
@@ -63,9 +63,9 @@ static func _firework_update(_delta: float, firework: Dictionary) -> void:
 
 	if draw_trail:
 		if firework.depth == 0:
-			Trail_0.create_and_add(firework.actual_pos, Vector2(0, 0), Color("FFEBA3"), 1, 300)
+			Trail_0.create_and_add(firework.actual_pos, Vector2(0, 0), Color("B2FFF2"), 1, 300)
 		else:
-			Trail_0.create_and_add(firework.actual_pos, Vector2(0, 0), Color("FFEBA3"), 1, 100)
+			Trail_0.create_and_add(firework.actual_pos, Vector2(0, 0), Color("B2FFF2"), 1, 100)
 		firework.trail_created += 1
 
 static func _pop_firework(firework: Dictionary) -> void:
