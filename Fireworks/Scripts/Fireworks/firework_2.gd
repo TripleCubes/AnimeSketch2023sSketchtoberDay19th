@@ -19,6 +19,7 @@ static func create_and_add(depth: int, in_pos_dir: = Vector2(0, 0), exist_for_ms
 
 	var firework: = BaseFirework.create(pos, dir, speed, Color("B2FFF2"),
 										depth, exist_for_msec, randf_range(150, 350), randf_range(0.01, 0.06), 1,
+										5,
 										Firework_2._firework_draw, Firework_2._firework_update)
 
 	firework.actual_pos = pos

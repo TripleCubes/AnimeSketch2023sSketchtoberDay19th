@@ -2,10 +2,12 @@ class_name Firework_3
 extends Node2D
 
 static func create_and_add(depth: int, in_pos_dir: = Vector2(0, 0), exist_for_msec: float = 10000) -> void:
+	var trail_delay_msec: float
+	var speed: float
 	var pos: Vector2
 	var dir: Vector2	
-	var speed: float
 	if depth == 0:		
+		trail_delay_msec = 5
 		speed = randf_range(200, 350)
 		pos = GF.rnd_pos_x()
 		if in_pos_dir == Vector2(0, 0):
@@ -13,12 +15,14 @@ static func create_and_add(depth: int, in_pos_dir: = Vector2(0, 0), exist_for_ms
 		else:
 			dir = (in_pos_dir - pos).normalized()
 	else:		
+		trail_delay_msec = 10000
 		speed = randf_range(10, 30)
 		dir = GF.rnd_dir_bias_up()
 		pos = in_pos_dir
 
 	var firework: = BaseFirework.create(pos, dir, speed, Color("B8FFAA"),
 										depth, exist_for_msec, randf_range(150, 350), randf_range(0.001, 0.006), 1,
+										trail_delay_msec,
 										Firework_3._firework_draw, Firework_3._firework_update)
 
 	firework.actual_pos = pos
