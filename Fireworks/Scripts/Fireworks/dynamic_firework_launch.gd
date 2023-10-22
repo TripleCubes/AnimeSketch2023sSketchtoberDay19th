@@ -15,6 +15,9 @@ func _process(_delta):
 	if _time_until_next_launch < 0:
 		_time_until_next_launch = randf_range(3, 5)
 
+		if not GV.auto_launch_firework_checkbox.button_pressed:
+			return
+
 		var dice: = randf_range(0, 10)
 		if dice > 4:
 			_launch()

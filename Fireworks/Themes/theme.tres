@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bigt2ohojlacf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6l860"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqua6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[resource]
+CheckBox/styles/focus = SubResource("StyleBoxFlat_6l860")
+OptionButton/styles/focus = SubResource("StyleBoxFlat_vqua6")
