@@ -1,13 +1,7 @@
-Art and codes by TripleCubes
-
-Written in 4 days for Mini Jam 141: Stories
-
-Limitation: Ridiculously overpowered
-
 Created using Godot engine, version 4.1.1
 
 # LICENSE
-The Queen is OP is under the MIT license. Check [LICENSE](LICENSE) for full information.
+AnimeSketch 2023's Sketchtober day 19 is under the MIT license. Check [LICENSE](LICENSE) for full information.
 
 # THIRD PARTY LICENSES
 ## Godot
