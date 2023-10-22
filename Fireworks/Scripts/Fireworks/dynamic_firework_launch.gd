@@ -1,6 +1,6 @@
 extends Node
 
-var _firework_type_list: = [
+var firework_type_list: = [
 	Firework_0,
 	Firework_1,
 	Firework_2,
@@ -22,7 +22,7 @@ func _process(_delta):
 			_launch_mixed()
 
 func _launch() -> void:
-	var firework_type = _firework_type_list[randi_range(0, 3)]
+	var firework_type = firework_type_list[randi_range(0, 3)]
 	for i in randi_range(2, 6):
 		if firework_type == Firework_3 and i > 3:
 			continue
@@ -35,7 +35,7 @@ func _launch_mixed() -> void:
 	var firework_3_count: int = 0
 
 	for i in randi_range(2, 5):
-		var firework_type = _firework_type_list[randi_range(0, 3)]
+		var firework_type = firework_type_list[randi_range(0, 3)]
 
 		if firework_type == Firework_3:
 			firework_3_count += 1
@@ -43,6 +43,6 @@ func _launch_mixed() -> void:
 		if firework_type == Firework_3 and firework_3_count > 2:
 			continue
 
-		GF.wait(randf_range(0.2, 0.8), func():
+		GF.wait(i * randf_range(0.5, 1.4), func():
 			firework_type.create_and_add(0)
 		)

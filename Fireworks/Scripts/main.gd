@@ -10,7 +10,8 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_just_pressed("MOUSE_LEFT"):
-		Firework_2.create_and_add(0)
+		var firework_type = DynamicFireworkLaunch.firework_type_list[randi_range(0, 3)]
+		firework_type.create_and_add(0, GF.mouse_pos())
 
 	if Input.is_action_just_pressed("KEY_2"):
 		print(GV.firework_launcher.list.size())

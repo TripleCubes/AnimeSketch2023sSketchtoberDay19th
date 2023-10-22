@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://wcw48a7wirak"]
+[gd_scene load_steps=14 format=3 uid="uid://wcw48a7wirak"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_2r0h1"]
 [ext_resource type="Script" path="res://Scripts/Fireworks/firework_launcher.gd" id="2_la56c"]
 [ext_resource type="Shader" path="res://Shaders/horizontal_blur.gdshader" id="3_mt32h"]
 [ext_resource type="Shader" path="res://Shaders/vertical_blur.gdshader" id="4_h6am2"]
 [ext_resource type="Shader" path="res://Shaders/add.gdshader" id="5_hntl1"]
+[ext_resource type="Texture2D" uid="uid://bg5nuvqiic2mq" path="res://Assets/Sprites/_19.png" id="6_sh6ym"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_b1a5d"]
 viewport_path = NodePath("FireworkLauncher")
@@ -83,3 +84,8 @@ anchor_mode = 0
 material = SubResource("ShaderMaterial_fueno")
 offset_right = 600.0
 offset_bottom = 600.0
+
+[node name="19" type="Sprite2D" parent="."]
+position = Vector2(300, 300)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("6_sh6ym")

@@ -16,7 +16,7 @@ static func create_and_add(depth: int, in_pos_dir: = Vector2(0, 0), exist_for_ms
 
 	var firework: = BaseFirework.create(pos, dir, randf_range(200, 350), Color(1, 1, 1),
 										depth, exist_for_msec, randf_range(Consts.MAX_FIREWORK_H, Consts.MIN_FIREWORK_H), 
-										randf_range(0.1, 0.5), 1.5,
+										randf_range(0.1, 0.5), 1,
 										5,
 										Firework_0._firework_draw, Firework_0._firework_update)
 
@@ -27,7 +27,7 @@ static func create_and_add(depth: int, in_pos_dir: = Vector2(0, 0), exist_for_ms
 static func _firework_draw(firework: Dictionary) -> void:
 	if GF.out_of_window(firework.pos):
 		return
-		
+
 	var opacity: = float(firework.exist_for_msec - (Time.get_ticks_msec() - firework.created_at_msec)) / 100
 	GV.firework_launcher.draw_circle(firework.actual_pos, firework.radius, 
 									Color(firework.color.r, firework.color.g, firework.color.b, opacity))
@@ -55,12 +55,12 @@ static func _firework_update(_delta: float, firework: Dictionary) -> void:
 		_pop_firework(firework)
 
 	if firework.trail_created * firework.trail_delay_msec < Time.get_ticks_msec() - firework.created_at_msec:
-		Trail_0.create_and_add(firework.actual_pos, Vector2(0, 0), Color(1, 1, 1), 1.5, 300)
+		Trail_0.create_and_add(firework.actual_pos, Vector2(0, 0), Color(1, 1, 1), 1, 300)
 		firework.trail_created += 1
 
 static func _pop_firework(firework: Dictionary) -> void:
 	for i in randf_range(7, 10):
-		create_and_add(firework.depth + 1, firework.pos, randf_range(500, 800))
+		create_and_add(firework.depth + 1, firework.pos, randf_range(400, 600))
 
 	GF.bkg_glow(1.3)
 	firework.remove_next_frame = true
