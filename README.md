@@ -1,7 +1,7 @@
 Created using Godot engine, version 4.1.1
 
 # LICENSE
-AnimeSketch 2023's Sketchtober day 19 is under the MIT license. Check [LICENSE](LICENSE) for full information.
+AnimeSketch 2023's Sketchtober day 19th is under the MIT license. Check [LICENSE](LICENSE) for full information.
 
 # THIRD PARTY LICENSES
 ## Godot
